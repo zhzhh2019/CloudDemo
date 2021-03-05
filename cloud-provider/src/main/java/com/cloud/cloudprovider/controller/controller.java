@@ -1,7 +1,9 @@
 package com.cloud.cloudprovider.controller;
 
 
+import com.cloud.cloudprovider.client.LabelClient;
 import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController//@RestController 不走视图解析器 ，会返回 字符串 如果用的是@Controller 会走视图解析器 ，如果不走，可以在方法上加上 注解@ResponseBody
@@ -55,5 +57,26 @@ public class controller {
     public String list(@RequestParam String userId) {
         return "user";
     }
+
+
+
+    @Autowired
+    private LabelClient labelClient;
+
+    @RequestMapping("/test1")
+    public String findAll(){
+        System.err.println("访问到了 "+labelClient.findAll());
+        return labelClient.findAll();
+    }
+
+
+
+
+
+
+
+
+
+
 
 }
